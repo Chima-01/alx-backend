@@ -10,6 +10,8 @@ class LIFOCache(BaseCaching):
     """
     class to implement lifocaching system
     """
+    def __init__(self):
+        super().__init__
 
     def put(self, key, item):
         """add to cache system
@@ -17,10 +19,10 @@ class LIFOCache(BaseCaching):
         cache = self.cache_data
         if key and item:
             cache[key] = item
-        if len(cache) > BaseCaching.MAX_ITEMS:
-            key = list(cache.keys())[-2]
-            del cache[key]
-            print(f"DISCARD: {key}")
+            if len(cache) > BaseCaching.MAX_ITEMS:
+                key = list(cache.keys())[-2]
+                del cache[key]
+                print(f"DISCARD: {key}")
 
     def get(self, get):
         """get item from cache_data
