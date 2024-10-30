@@ -24,7 +24,7 @@ class LIFOCache(BaseCaching):
                 del cache[key]
                 print(f"DISCARD: {key}")
 
-    def get(self, get):
+    def get(self, key):
         """get item from cache_data
         """
-        return self.cache_data.get(key)
+        return self.cache_data.get(key, "None")
