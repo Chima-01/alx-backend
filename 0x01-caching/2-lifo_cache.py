@@ -11,7 +11,7 @@ class LIFOCache(BaseCaching):
     class to implement lifocaching system
     """
     def __init__(self):
-        super().__init__
+        super().__init__()
 
     def put(self, key, item):
         """add to cache system
