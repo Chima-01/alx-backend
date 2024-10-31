@@ -19,12 +19,12 @@ class MRUCache(BaseCaching):
         """
         cache = self.cache_data
         if key and item:
-            self.cache_copy.update({key: item})
-            cache[key] = item
-            if len(cache) > BaseCaching.MAX_ITEMS:
+            if len(cache) + 1 > BaseCaching.MAX_ITEMS:
                 mru = self.get_mru(None)
                 del cache[mru]
                 print(f"DISCARD: {mru}")
+            self.cache_copy[key] = item
+            cache[key] = item
 
     def get(self, key):
         """ get item from key
@@ -38,7 +38,7 @@ class MRUCache(BaseCaching):
         """
         cache_copy = self.cache_copy
         if key is None:
-            return list(cache_copy.keys())[-2]
+            return cache_copy.popitem()[0]
         elif key in cache_copy:
             item = cache_copy.get(key)
             del cache_copy[key]
